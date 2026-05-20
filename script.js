@@ -89,3 +89,44 @@ function calculateBMI() {
     resultDiv.innerHTML = `Your Body Mass Index is <strong>${bmi}</strong> — ${status}`;
     resultDiv.style.color = color;
 }
+
+// MOBILE MENU
+document.getElementById("mobile-menu").onclick = function () {
+    document.querySelector(".nav-links").classList.toggle("active");
+};
+
+// BMI CALCULATOR
+function calculateBMI() {
+    let w = document.getElementById("weight").value;
+    let h = document.getElementById("height").value / 100;
+
+    let bmi = w / (h * h);
+
+    let output = document.getElementById("bmi-output");
+
+    if (!bmi) {
+        output.innerHTML = "Enter valid values";
+        return;
+    }
+
+    output.innerHTML = "Your BMI: " + bmi.toFixed(2);
+}
+
+// FAQ TOGGLE
+document.querySelectorAll(".faq-item").forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("active");
+        let ans = item.querySelector(".faq-answer");
+        ans.style.display = ans.style.display === "block" ? "none" : "block";
+    });
+});
+
+// SCROLL REVEAL
+window.addEventListener("scroll", () => {
+    document.querySelectorAll(".reveal").forEach(el => {
+        let top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            el.classList.add("active");
+        }
+    });
+});
